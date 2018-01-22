@@ -4,6 +4,8 @@ add_custom_command(
         lexer.h
     DEPENDS ${CMAKE_SOURCE_DIR}/src/core/lexer.l
     COMMAND ${FLEX_EXECUTABLE}
+		--nounistd
+		--wincompat
         --outfile=lexer.c
         --header-file=lexer.h
         -- ${CMAKE_SOURCE_DIR}/src/core/lexer.l
