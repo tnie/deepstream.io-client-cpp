@@ -8,6 +8,7 @@ enable_testing()
 include(CTest)
 include(ExternalProject)
 
+set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
 set(PROJECT_VERSION_MAJOR 0)
 set(PROJECT_VERSION_MINOR 1)
 set(PROJECT_VERSION_PATCH 0)
