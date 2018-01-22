@@ -55,7 +55,8 @@ namespace random {
         T a = std::numeric_limits<T>::min();
         T b = std::numeric_limits<T>::max() - 2;
 
-        std::uniform_int_distribution<T> dist(a, b);
+        //std::uniform_int_distribution<T> dist(a, b);
+        std::uniform_int_distribution<int> dist(a, b);
         auto f = [&dist, p_engine]() -> T {
             T c = dist(*p_engine);
             c = (c < ASCII_RECORD_SEPARATOR) ? c : (c + 2);
