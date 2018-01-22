@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-#include <unistd.h> // usleep
+//#include <unistd.h> // usleep
 
 #include <exception>
 #include <iostream>
@@ -22,6 +22,8 @@
 #include <deepstream/core.hpp>
 #include <deepstream/lib/poco-ws.hpp>
 #include <deepstream/lib/basic-error-handler.hpp>
+#include <chrono>
+#include <thread>
 
 int main(int argc, char* argv[])
 {
@@ -51,7 +53,8 @@ int main(int argc, char* argv[])
                 std::cout << "successfully logged in to " << uri << std::endl;
                 return EXIT_SUCCESS;
             }
-            usleep(10e3);
+            //usleep(10e3);
+            std::this_thread::sleep_for(std::chrono::milliseconds(1000));
         }
     } catch (std::exception& e) {
         std::cerr << "Caught exception \"" << e.what() << "\"" << std::endl;

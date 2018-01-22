@@ -20,6 +20,8 @@
 #include <deepstream/core.hpp>
 #include <deepstream/lib/poco-ws.hpp>
 #include <deepstream/lib/basic-error-handler.hpp>
+#include <chrono>
+#include <thread>
 
 int main(int argc, char* argv[])
 {
@@ -58,7 +60,9 @@ int main(int argc, char* argv[])
             } else {
                 wsh.send(input_buff);
             }
-            usleep(400e3);
+            //usleep(400e3);
+            std::this_thread::sleep_for(std::chrono::milliseconds(400*1000));
+
             wsh.process_messages();
             wsh.process_messages();
         } while (!done);
