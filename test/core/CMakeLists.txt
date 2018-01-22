@@ -37,6 +37,8 @@ add_custom_command(
         lexer.h
     DEPENDS ${CMAKE_SOURCE_DIR}/src/core/lexer.l
     COMMAND ${FLEX_EXECUTABLE}
+		--nounistd
+		--wincompat
         --outfile=lexer.c
         --header-file=lexer.h
         -- ${CMAKE_SOURCE_DIR}/src/core/lexer.l
@@ -48,7 +50,7 @@ set_source_files_properties(
     "${CMAKE_CURRENT_BINARY_DIR}/lexer.c"
     PROPERTIES
         COMPILE_DEFINITIONS "_POSIX_SOURCE"
-        COMPILE_FLAGS "-Wno-unused-function -Wno-unused-parameter -Wno-type-limits -Wno-sign-compare"
+        # COMPILE_FLAGS "-Wno-unused-function -Wno-unused-parameter -Wno-type-limits -Wno-sign-compare"
 )
 
 include_directories(${CMAKE_SOURCE_DIR})

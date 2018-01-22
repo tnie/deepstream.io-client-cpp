@@ -16,7 +16,8 @@
 #include <cstdio>
 #include <cstdlib>
 #include <sys/types.h>
-#include <unistd.h>
+//#include <unistd.h>
+#include <io.h>
 
 #include <stdexcept>
 
@@ -81,7 +82,7 @@ int main(int argc, char** argv)
         Buffer binary = m.to_binary();
         output.insert(output.end(), binary.cbegin(), binary.cend());
     }
-
+    const int STDOUT_FILENO = 1;
     int ret = write(STDOUT_FILENO, output.data(), output.size());
 
     if (ret < 0 || std::size_t(ret) != output.size()) {

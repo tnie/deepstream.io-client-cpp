@@ -45,7 +45,8 @@ enum class ConnectionState {
     RECONNECTING,
     ERROR
 };
-
+#undef TRUE
+#undef FALSE
 enum class PayloadType : char {
     STRING = 'S',
     OBJECT = 'O',

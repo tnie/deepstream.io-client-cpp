@@ -16,7 +16,8 @@
 #include <cstdio>
 #include <cstdlib>
 #include <sys/types.h>
-#include <unistd.h>
+//#include <unistd.h>
+#include <io.h>
 
 #include <vector>
 
@@ -37,6 +38,7 @@ int main(int argc, char** argv)
     while (true) {
         std::vector<char> buffer(4096, 0);
 
+        const int STDIN_FILENO = 0;
         int ret = read(STDIN_FILENO, buffer.data(), buffer.size() - 2);
 
         if (ret == 0)

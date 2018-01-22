@@ -21,7 +21,8 @@
 #include <cstring>
 #include <iostream>
 
-#include <arpa/inet.h>
+//#include <arpa/inet.h>
+#include <Winsock2.h>
 
 #include <deepstream/core/buffer.hpp>
 #include <deepstream/core/client.hpp>

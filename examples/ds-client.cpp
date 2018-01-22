@@ -41,7 +41,7 @@ int main(int argc, char* argv[])
         client.login(deepstream::Buffer("{}"), [&](const deepstream::Buffer &&){
                 done = true;
             });
-
+#undef ERROR
         while (true) {
             wsh.process_messages();
             if (client.get_connection_state() == deepstream::ConnectionState::CLOSED
