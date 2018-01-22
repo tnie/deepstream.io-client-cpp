@@ -30,6 +30,8 @@ public:
         return Buffer(str);
     }
 
+#undef TRUE
+#undef FALSE
     PayloadType get_type(const json &data) const
     {
         if (data.is_object() || data.is_array()) {

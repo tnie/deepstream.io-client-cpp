@@ -13,12 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#include <unistd.h> // usleep
+//#include <unistd.h> // usleep
 
 #include <exception>
 #include <iostream>
 
 #include <deepstream.hpp>
+#include <thread>
 
 using deepstream::json;
 
@@ -77,6 +78,7 @@ int main(int argc, char* argv[])
 
     while (true) {
         client.process_messages();
-        usleep(10000);
+        //usleep(10000);
+        std::this_thread::sleep_for(std::chrono::milliseconds(10000));
     }
 }

@@ -7198,7 +7198,7 @@ class basic_json
                 v.push_back(j.m_value.boolean ? 0xc3 : 0xc2);
                 break;
             }
-
+#undef max
             case value_t::number_integer:
             {
                 if (j.m_value.number_integer >= 0)
@@ -7237,6 +7237,7 @@ class basic_json
                         add_to_vector(v, 8, j.m_value.number_unsigned);
                     }
                 }
+#undef min
                 else
                 {
                     if (j.m_value.number_integer >= -32)
