@@ -115,7 +115,7 @@ namespace deepstream {
 
         const std::size_t bytes_available = websocket_->available();
         const std::size_t min_buffer_size = 1024;
-        const std::size_t buffer_size = std::max(bytes_available, min_buffer_size);
+        const std::size_t buffer_size = (std::max)(bytes_available, min_buffer_size);
 
         Buffer buffer(buffer_size, 0);
 

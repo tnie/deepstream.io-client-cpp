@@ -22,6 +22,8 @@
 
 #include <deepstream/core/buffer.hpp>
 
+#undef ERROR
+
 namespace deepstream {
 
     enum class WSState {
