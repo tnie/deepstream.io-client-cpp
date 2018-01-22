@@ -69,6 +69,7 @@ if(BUILD_COVERAGE)
   set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} --coverage")
 endif()
 
+OPTION(BUILD_POCO "enable build poco auto" ON)
 if(BUILD_POCO)
   externalproject_add(poco
     PREFIX thirdparty
