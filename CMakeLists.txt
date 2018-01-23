@@ -10,10 +10,13 @@ include(ExternalProject)
 
 if(WIN32)
 	set(FLEX_EXECUTABLE "${CMAKE_SOURCE_DIR}/tools-windows/win_flex_bison-latest/win_flex.exe")
+	set(BOOST_ROOT "${CMAKE_SOURCE_DIR}/../boost_1_65_1/")
 	set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
 	# set(OPENSSL_ROOT_DIR "C:/OpenSSL-Win32")
+	set(BOOST_LIBRARYDIR "${CMAKE_SOURCE_DIR}/../boost_1_65_1/stage/lib32-test-complete")
 	if("${CMAKE_GENERATOR}" MATCHES "Win64")
 		# set(OPENSSL_ROOT_DIR "C:/OpenSSL-Win64")
+		set(BOOST_LIBRARYDIR "${CMAKE_SOURCE_DIR}/../boost_1_65_1/stage/lib64-test-complete")
 	endif()
 endif()
 
@@ -181,3 +184,4 @@ message(STATUS "BUILD_POCO=${BUILD_POCO}")
 message(STATUS "Poco_LIBRARIES=${Poco_LIBRARIES}")
 
 message(STATUS "OPENSSL_ROOT_DIR is:${OPENSSL_ROOT_DIR}")
+message(STATUS "BOOST_LIBRARYDIR is:${BOOST_LIBRARYDIR}")
