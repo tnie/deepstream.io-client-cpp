@@ -7,4 +7,4 @@ a.out
 .idea
 
 build/
-msvc/
+msvc*/
