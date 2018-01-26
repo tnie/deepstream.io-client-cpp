@@ -86,8 +86,10 @@ OPTION(BUILD_POCO "enable build poco auto" ON)
 if(BUILD_POCO)
   externalproject_add(poco
     PREFIX thirdparty
-    URL https://github.com/pocoproject/poco/archive/poco-1.7.8-release.tar.gz
-    URL_HASH MD5=4dbf02e14b9f20940ca0e8c70d8f6036
+	# URL https://github.com/tnie/poco/archive/feature_deepstream.io-client-cpp.zip
+	# 使用 zip 格式 linux 无法解压，直接将 .zip 后缀名改成 .tar.gz
+	URL https://github.com/tnie/poco/archive/feature_deepstream.io-client-cpp.tar.gz ## 使用 zip 格式 linux 无法解压
+    URL_HASH MD5=17A9E27BB95DAF19329F5D0244DDEF5A
     CMAKE_GENERATOR ${CMAKE_GENERATOR}
     CMAKE_BUILD_TYPE ${CMAKE_BUILD_TYPE}
     CMAKE_ARGS
@@ -107,6 +109,7 @@ if(BUILD_POCO)
     -DENABLE_JSON=OFF
     -DENABLE_XML=OFF
     -DCMAKE_INSTALL_PREFIX=${CMAKE_BINARY_DIR}/thirdparty
+	-DCMAKE_RUNTIME_OUTPUT_DIRECTORY=${CMAKE_BINARY_DIR}/bin
     LOG_CONFIGURE ON
     UPDATE_COMMAND "")
 
@@ -118,6 +121,7 @@ endif()
 find_package(SWIG 3)
 find_package(FLEX 2.5 REQUIRED)
 
+# TODO 链接时理应区分 release 和 debug 版本吧？
 link_directories(${CMAKE_BINARY_DIR}/thirdparty/lib)
 include_directories(${CMAKE_BINARY_DIR}/thirdparty/include)
 
