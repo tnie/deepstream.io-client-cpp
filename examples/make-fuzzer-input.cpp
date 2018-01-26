@@ -16,8 +16,11 @@
 #include <cstdio>
 #include <cstdlib>
 #include <sys/types.h>
-//#include <unistd.h>
-#include <io.h>
+#ifdef WIN32
+	#include <io.h>
+#else
+	#include <unistd.h>
+#endif
 
 #include <stdexcept>
 
@@ -82,7 +85,9 @@ int main(int argc, char** argv)
         Buffer binary = m.to_binary();
         output.insert(output.end(), binary.cbegin(), binary.cend());
     }
+#ifdef WIN32
     const int STDOUT_FILENO = 1;
+#endif
     int ret = write(STDOUT_FILENO, output.data(), output.size());
 
     if (ret < 0 || std::size_t(ret) != output.size()) {

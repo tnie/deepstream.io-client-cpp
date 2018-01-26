@@ -21,8 +21,11 @@
 #include <cstring>
 #include <iostream>
 
-//#include <arpa/inet.h>
-#include <Winsock2.h>
+#ifdef WIN32
+	#include <Winsock2.h>
+#else
+	#include <arpa/inet.h>
+#endif
 
 #include <deepstream/core/buffer.hpp>
 #include <deepstream/core/client.hpp>

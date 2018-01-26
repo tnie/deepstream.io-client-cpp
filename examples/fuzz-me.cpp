@@ -16,8 +16,11 @@
 #include <cstdio>
 #include <cstdlib>
 #include <sys/types.h>
-//#include <unistd.h>
-#include <io.h>
+#ifdef WIN32
+	#include <io.h>
+#else
+	#include <unistd.h>
+#endif
 
 #include <vector>
 
@@ -37,8 +40,9 @@ int main(int argc, char** argv)
 
     while (true) {
         std::vector<char> buffer(4096, 0);
-
+#ifdef WIN32
         const int STDIN_FILENO = 0;
+#endif
         int ret = read(STDIN_FILENO, buffer.data(), buffer.size() - 2);
 
         if (ret == 0)
