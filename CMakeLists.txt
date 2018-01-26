@@ -108,21 +108,27 @@ if(BUILD_POCO)
     -DENABLE_PAGECOMPILER_FILE2PAGE=OFF
     -DENABLE_JSON=OFF
     -DENABLE_XML=OFF
+	# 会在 thirdparty 下新增 bin/lib/include 三个目录
+	# msvc 不同编译模式下不会生成对应的子目录。安装本也不该再区分 debug/release 子目录。
     -DCMAKE_INSTALL_PREFIX=${CMAKE_BINARY_DIR}/thirdparty
 	-DCMAKE_RUNTIME_OUTPUT_DIRECTORY=${CMAKE_BINARY_DIR}/bin
     LOG_CONFIGURE ON
     UPDATE_COMMAND "")
 
-  set(Poco_LIBRARIES PocoNetSSL PocoCrypto PocoNet PocoUtil PocoFoundation)
+  # 此定义多余，在 windows 上造成 bug
+  # set(Poco_LIBRARIES PocoNetSSL PocoCrypto PocoNet PocoUtil PocoFoundation)
 else()
+  # windows 下找不到包怎么不报错，不中断呢？在 linux 下找不到会中断。
+  # 总而言之，结合官方库的脚本来看，原创作者就没打算走这个分支 find_package()，至少是还没调试好。 
   find_package(Poco 1.7.8 REQUIRED NetSSL Crypto Net Util Foundation)
+  message(STATUS "#### POCO_FOUND=${POCO_FOUND}")
 endif()
 
 find_package(SWIG 3)
 find_package(FLEX 2.5 REQUIRED)
 
-# TODO 链接时理应区分 release 和 debug 版本吧？
 link_directories(${CMAKE_BINARY_DIR}/thirdparty/lib)
+# 全局作用域
 include_directories(${CMAKE_BINARY_DIR}/thirdparty/include)
 
 include_directories(${CMAKE_SOURCE_DIR}/include ${CMAKE_BINARY_DIR}/include)
@@ -190,3 +196,10 @@ message(STATUS "Poco_LIBRARIES=${Poco_LIBRARIES}")
 
 message(STATUS "OPENSSL_ROOT_DIR is:${OPENSSL_ROOT_DIR}")
 message(STATUS "BOOST_LIBRARYDIR is:${BOOST_LIBRARYDIR}")
+
+# debug
+message(STATUS "#### POCO_INCLUDE_DIR=${POCO_INCLUDE_DIR}")
+message(STATUS " POCO_INCLUDE_DIRS=${POCO_INCLUDE_DIRS}")
+message(STATUS "#### POCO_LIBRARY=${POCO_LIBRARY}")
+message(STATUS " POCO_LIBRARYS=${POCO_LIBRARYS}")
+message(STATUS "#### Poco_LIBRARIES=${Poco_LIBRARIES}")
