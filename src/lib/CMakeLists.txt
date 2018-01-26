@@ -3,7 +3,7 @@ find_package(Threads REQUIRED)
 find_package(OpenSSL REQUIRED)
 
 add_library(
-  libdeepstream_poco SHARED
+  libdeepstream_poco STATIC
   poco-ws.cpp)
 
 set_target_properties(libdeepstream_poco PROPERTIES OUTPUT_NAME deepstream-poco)
