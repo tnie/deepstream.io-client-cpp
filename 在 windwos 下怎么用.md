@@ -10,19 +10,21 @@
 
 	在 `deepstream.io-client-cpp/tools-windows` 目录中留有备份，但网站能够下载到最新版本。
 
-## boost 库
+## ~~\* boost 库~~
 
-1. 从 [boost 官方网站](http://www.boost.org) 下载 [boost_1_65_1.7z][4] 解压，修改 `deepstream.io-client-cpp/CMakeLists.txt` 文件中 `BOOST_ROOT` 变量
+~~**带 `*` 的条目**建议省略：使用 `cmake -DBUILD_TESTING=OFF` 关闭项目检验，取消对 boost 的依赖。~~
+
+1. ~~\* 从 [boost 官方网站](http://www.boost.org) 下载 [boost_1_65_1.7z][4] 解压，修改 `deepstream.io-client-cpp/CMakeLists.txt` 文件中 `BOOST_ROOT` 变量~~
 
 	```CMake
 	set(BOOST_ROOT "${CMAKE_SOURCE_DIR}/../boost_1_65_1/")
 	```
 
-2. 参考 [boost 指导手册][5]，编译 boost 库。
+2. ~~\* 参考 [boost 指导手册][5]，编译 boost 库。~~
 
-	- 注意区分 32 位、64 位。
-	- boost 的 b2 构建无法同时生成 32 位、64 位版本。
-	- 编译目标 `stage/lib` 目录在重新编译时会被覆盖，要想同时保留两种版本，需要重命名目录。
+	- ~~注意区分 32 位、64 位。~~
+	- ~~boost 的 b2 构建无法同时生成 32 位、64 位版本。~~
+	- ~~编译目标 `stage/lib` 目录在重新编译时会被覆盖，要想同时保留两种版本，需要重命名目录。~~
 
 	```Batchfile
 	:: 32 位
@@ -31,7 +33,7 @@
 	.\b2.exe --with-test address-model=64 --build-type=complete
 	```
 
-3. 调整 `deepstream.io-client-cpp/CMakeLists.txt` 文件中 `BOOST_LIBRARYDIR` 变量
+3. ~~\* 调整 `deepstream.io-client-cpp/CMakeLists.txt` 文件中 `BOOST_LIBRARYDIR` 变量~~
 
 	```CMake
 	set(BOOST_LIBRARYDIR "${BOOST_ROOT}/stage/lib32-test-complete")
