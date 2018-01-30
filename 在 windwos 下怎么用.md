@@ -2,9 +2,14 @@
 
 1. 下载 [cmake 最新版本](https://cmake.org/download/)，推荐使用 [免安装版本 cmake-3.10.2-win64-x64.zip][6]
 
-	为了使用方便也可将其 bin 目录添加到 path 系统环境变量。
+	免安装版本为了使用方便可以在解压后将其 `bin` 目录添加到 `path` 系统环境变量。
 
-2. 克隆本仓库（feature_Compatible-with-linux 分支）
+2. 克隆本仓库（`feature_Compatible-with-linux` 分支）
+
+	```Shell
+	git clone git@github.com:tnie/deepstream.io-client-cpp.git
+	```
+
 3. 打开 `deepstream.io-client-cpp/tools-windows` ，将 win_flex_bison-latest.zip 解压到 win_flex_bison-latest
 4. 从 [WinXXOpenSSL][1] 下载 [Win32OpenSSL-1_1_0g.exe][2] 和 [Win64OpenSSL-1_1_0g.exe][3] 安装。
 
@@ -48,14 +53,18 @@
 
 ## cmake 构建
 
-windows 上可以使用 cmake-gui 操作，也可以使用 cmake 命令行操作。cmake-gui 操作简单，且命令行更具通用性，这里只介绍后者。
+windows 上可以使用 cmake-gui 操作，也可以使用 cmake 命令行操作。cmake-gui 操作简单，但命令行更具通用性，这里只介绍后者。
 
-- 32 位版本：在 deepstream.io-client-cpp 目录新建（已存在直接打开，并删除其中所有内容）msvc32 目录中执行 `cmake -G "Visual Studio 14" ..`
-- 64 位版本：在 msvc64 目录中执行 `cmake -G "Visual Studio 14 Win64" ..`
+- 32 位版本：在 `deepstream.io-client-cpp` 目录新建（已存在直接打开，并删除其中所有内容）`msvc32` 目录中执行 `cmake -G "Visual Studio 14" ..`
+- 64 位版本：在 `msvc64` 目录中执行 `cmake -G "Visual Studio 14 Win64" ..`
 
 ## msvc-2015 编译
 
-打开解决方案，将 ds-example 改为启动项目，指定调试参数 "ws://ip:port/deepstream"，编译并执行。
+打开 `deepstream.io-client-cpp/msvc*/deepstream.io-client-cpp.sln` 解决方案，将 ds-example 改为启动项目，指定调试命令参数 "ws://ip:port/deepstream"，编译并执行。
+
+# 其他
+
+调试问题或查看迁移过程，可以结合 `deepstream.io-client-cpp/tools-windows` 目录下[《deepstream.io-client-cpp 平台迁移.docx》][7] 备忘录、版本库的 commits 理解。
 
 [1]:https://slproweb.com/products/Win32OpenSSL.html
 [2]:https://slproweb.com/download/Win32OpenSSL-1_1_0g.exe
@@ -63,3 +72,4 @@ windows 上可以使用 cmake-gui 操作，也可以使用 cmake 命令行操作
 [4]:https://dl.bintray.com/boostorg/release/1.65.1/source/boost_1_65_1.7z
 [5]:http://www.boost.org/doc/libs/1_66_0/more/getting_started/windows.html
 [6]:https://cmake.org/files/v3.10/cmake-3.10.2-win64-x64.zip
+[7]:tools-windows/deepstream.io-client-cpp%20%E5%B9%B3%E5%8F%B0%E8%BF%81%E7%A7%BB.docx
