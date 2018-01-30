@@ -6,8 +6,11 @@ project(deepstream.io-client-cpp)
 enable_language(C)
 enable_language(CXX)
 # OPTION(BUILD_TESTING "disable build testing auto" OFF)
-# enable_testing()
-# include(CTest)
+if(NOT WIN32)
+	enable_testing()
+	include(CTest)
+endif(NOT WIN32)
+
 include(ExternalProject)
 
 if(WIN32)
